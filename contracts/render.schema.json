@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://craftcut/schemas/render.schema.json",
+  "title": "RenderResult",
+  "type": "object",
+  "required": ["schema", "output_path", "duration_seconds", "width", "height", "frame_rate", "video_codec", "audio_codec", "bitrate_video_kbps", "bitrate_audio_kbps", "file_size_bytes", "wall_time_seconds", "hwaccel", "ffprobe_verification"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "craftcut.render.v1" },
+    "output_path": { "type": "string" },
+    "duration_seconds": { "type": "number" },
+    "width": { "type": "integer" },
+    "height": { "type": "integer" },
+    "frame_rate": { "type": "string" },
+    "video_codec": { "type": "string" },
+    "audio_codec": { "type": "string" },
+    "bitrate_video_kbps": { "type": "integer" },
+    "bitrate_audio_kbps": { "type": "integer" },
+    "file_size_bytes": { "type": "integer" },
+    "wall_time_seconds": { "type": "number" },
+    "hwaccel": { "type": "string", "enum": ["videotoolbox", "software"] },
+    "ffprobe_verification": {
+      "type": "object",
+      "description": "Self-probe of output; shape matches validate.schema.json ProbeResult."
+    }
+  }
+}

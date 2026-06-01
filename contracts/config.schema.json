@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://craftcut/schemas/config.schema.json",
+  "title": "CraftcutProjectConfig",
+  "description": "Per-project config at <project>/.craftcut/config.toml. All fields optional; missing fields inherit craftcut defaults.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": 1 },
+    "trim": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "threshold_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+        "margin_seconds": { "type": "number", "minimum": 0, "maximum": 5 },
+        "jobs": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "render": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "width": { "type": "integer" },
+        "height": { "type": "integer" },
+        "frame_rate": { "type": "integer" },
+        "video_bitrate": { "type": "string" },
+        "video_maxrate": { "type": "string" },
+        "video_bufsize": { "type": "string" },
+        "audio_bitrate": { "type": "string" },
+        "hwaccel": { "type": "boolean" },
+        "subtitle_font": { "type": "string" },
+        "subtitle_font_size": { "type": "integer" },
+        "subtitle_margin_v": { "type": "integer" }
+      }
+    },
+    "validate": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "strict": { "type": "boolean" },
+        "ignore_rotation": { "type": "boolean" },
+        "disk_budget_multiplier": { "type": "number", "minimum": 1 }
+      }
+    },
+    "log": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "retention_days": { "type": "integer", "minimum": 1 },
+        "retention_floor": { "type": "integer", "minimum": 1 },
+        "gzip_after_days": { "type": "integer", "minimum": 1 }
+      }
+    }
+  }
+}

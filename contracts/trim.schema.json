@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://craftcut/schemas/trim.schema.json",
+  "title": "TrimReport",
+  "type": "object",
+  "required": ["schema", "clips", "total_removed_seconds", "wall_time_seconds"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "craftcut.trim.v1" },
+    "clips": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["clip_stem", "input_path", "output_fcpxml", "duration_in_seconds", "duration_out_seconds", "reduction_ratio", "threshold_pct", "margin_seconds", "autoeditor_version", "exit_code"],
+        "additionalProperties": false,
+        "properties": {
+          "clip_stem": { "type": "string" },
+          "input_path": { "type": "string" },
+          "output_fcpxml": { "type": "string" },
+          "duration_in_seconds": { "type": "number" },
+          "duration_out_seconds": { "type": "number" },
+          "reduction_ratio": { "type": "number" },
+          "threshold_pct": { "type": "number" },
+          "margin_seconds": { "type": "number" },
+          "autoeditor_version": { "type": "string" },
+          "exit_code": { "type": "integer" }
+        }
+      }
+    },
+    "total_removed_seconds": { "type": "number" },
+    "wall_time_seconds": { "type": "number" }
+  }
+}

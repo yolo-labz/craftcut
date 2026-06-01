@@ -1,0 +1,112 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "craftcut"
+version = "0.1.0"
+description = "Sewing-tutorial editing orchestration CLI — auto-editor + OpenTimelineIO + melt"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+authors = [{ name = "Pedro H S Balbino", email = "pedrobalbino@proton.me" }]
+keywords = ["video", "editing", "fcpxml", "mlt", "otio", "auto-editor"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Operating System :: MacOS",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Multimedia :: Video",
+]
+dependencies = [
+  "typer[all]>=0.12",
+  "rich>=13.9",
+  "structlog>=25.1",
+  "ruamel.yaml>=0.18",
+  "opentimelineio>=0.18",
+  "opentimelineio-plugins>=0.18",
+  "blake3>=1.0",
+  "pydantic>=2.10",
+  "filelock>=3.16",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3",
+  "pytest-xdist>=3.6",
+  "pytest-golden>=0.2",
+  "syrupy>=4.8",
+  "pyright>=1.1.390",
+  "ruff>=0.9",
+  "jsonschema>=4.23",
+]
+
+[project.scripts]
+craftcut = "craftcut.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/yolo-labz/craftcut"
+Issues = "https://github.com/yolo-labz/craftcut/issues"
+Repository = "https://github.com/yolo-labz/craftcut"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/craftcut"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/craftcut", "tests", "README.md", "LICENSE"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+  "D",       # pydocstyle — opt-in later
+  "COM",     # formatter handles trailing commas
+  "ISC",     # formatter handles implicit concat
+  "CPY",     # no copyright headers
+  "ANN401",  # Any allowed in glue code
+  "PLR2004", # magic numbers in tests acceptable
+  "S101",    # assert in tests
+  "TRY003",  # long exception messages — CLI needs them
+  "EM101", "EM102",
+  "FBT001", "FBT002",  # boolean flags are idiomatic for Typer
+  "PLR0913", # Typer CLI callbacks have many args by design
+  "DTZ005",  # local-time now() is intentional for age calcs
+  "TC001", "TC002", "TC003",  # Pydantic needs runtime imports
+  "PLC0415", # lazy imports are intentional in a few places
+  "RUF002",  # unicode × intentional in user-facing docstrings
+  "ERA001",  # commented-out code — will clean as we implement
+  "N801",    # Warning_ is an intentional trailing-underscore to avoid shadowing
+  "PTH105",  # os.replace is the right primitive for atomic rename
+  "BLE001",  # broad except is intentional at a few boundaries
+  "PLC2701", # private-member reuse is intentional across sibling modules
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S", "D", "ANN", "PLR", "ARG"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.pyright]
+include = ["src", "tests"]
+pythonVersion = "3.12"
+typeCheckingMode = "strict"
+reportMissingTypeStubs = false
+reportUnknownMemberType = "warning"
+reportUnknownVariableType = "warning"
+reportUnknownArgumentType = "warning"
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra -q --strict-markers --strict-config"
+testpaths = ["tests"]
+markers = [
+  "integration: requires external tools (auto-editor, melt, ffmpeg)",
+  "saturation: measures powermetrics, needs sudo",
+  "e2e: real render on micro fixture",
+]

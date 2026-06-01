@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://craftcut/schemas/manifest.schema.json",
+  "title": "Manifest",
+  "type": "object",
+  "required": ["schema_version", "project", "tool_versions", "stages"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": 1 },
+    "project": {
+      "type": "object",
+      "required": ["path", "created_at"],
+      "properties": {
+        "path": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "tool_versions": {
+      "type": "object",
+      "required": ["craftcut"],
+      "additionalProperties": { "type": "string" }
+    },
+    "stages": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/definitions/StageState" }
+    }
+  },
+  "definitions": {
+    "StageState": {
+      "type": "object",
+      "required": ["key", "status", "started_at"],
+      "additionalProperties": false,
+      "properties": {
+        "key": { "type": "string", "description": "blake3 hex" },
+        "status": { "type": "string", "enum": ["ok", "error", "running", "skipped"] },
+        "started_at": { "type": "string", "format": "date-time" },
+        "completed_at": { "type": ["string", "null"], "format": "date-time" },
+        "artifact": { "type": ["string", "null"] },
+        "artifacts": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "report": { "type": "object" },
+        "error": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

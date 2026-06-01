@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://craftcut/schemas/error.schema.json",
+  "title": "CraftcutError",
+  "description": "RFC 9457-style Problem Details envelope emitted on stdout when --json is set and the subcommand exits non-zero.",
+  "type": "object",
+  "required": ["schema", "type", "title", "status", "code", "detail", "remedy"],
+  "additionalProperties": true,
+  "properties": {
+    "schema": { "const": "craftcut.error.v1" },
+    "type": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI identifying the error kind"
+    },
+    "title": { "type": "string" },
+    "status": {
+      "type": "integer",
+      "enum": [2, 3, 4, 5]
+    },
+    "code": {
+      "type": "string",
+      "description": "Stable enum, SCREAMING_SNAKE_CASE"
+    },
+    "detail": { "type": "string" },
+    "instance": {
+      "type": "string",
+      "description": "Project path or offending file"
+    },
+    "remedy": {
+      "type": "string",
+      "description": "Actionable next step for the operator or LLM"
+    },
+    "stage": {
+      "type": "string",
+      "enum": ["doctor", "validate", "trim", "restructure", "render", "derive"]
+    },
+    "clip": { "type": ["string", "null"] },
+    "doc_url": { "type": "string", "format": "uri" }
+  }
+}
