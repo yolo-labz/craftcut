@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://craftcut/schemas/doctor.schema.json",
+  "title": "DoctorReport",
+  "type": "object",
+  "required": ["schema", "host_os", "architecture", "ok", "checks"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "craftcut.doctor.v1" },
+    "host_os": { "type": "string" },
+    "architecture": { "type": "string", "enum": ["arm64", "x86_64"] },
+    "ok": { "type": "boolean" },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "required_min_version", "present", "ok", "install_hint"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string" },
+          "required_min_version": { "type": "string" },
+          "observed_version": { "type": ["string", "null"] },
+          "present": { "type": "boolean" },
+          "ok": { "type": "boolean" },
+          "install_hint": { "type": "string" }
+        }
+      }
+    }
+  }
+}

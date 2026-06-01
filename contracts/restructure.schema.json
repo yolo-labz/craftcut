@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://craftcut/schemas/restructure.schema.json",
+  "title": "RestructureReport",
+  "type": "object",
+  "required": ["schema", "polished_fcpxml", "total_duration_seconds", "clip_count", "cuts_per_minute", "pacing_band", "moves", "dropped_clip_filters"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "craftcut.restructure.v1" },
+    "polished_fcpxml": { "type": "string" },
+    "total_duration_seconds": { "type": "number" },
+    "clip_count": { "type": "integer" },
+    "cuts_per_minute": { "type": "number" },
+    "pacing_band": { "type": "string", "enum": ["under", "in_band", "over"] },
+    "pacing_warning": { "type": ["string", "null"] },
+    "moves": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["clip", "to_section", "from_timecode", "to_timecode"],
+        "properties": {
+          "clip": { "type": "string" },
+          "from_section": { "type": ["string", "null"] },
+          "to_section": { "type": "string" },
+          "from_timecode": { "type": "string" },
+          "to_timecode": { "type": "string" }
+        }
+      }
+    },
+    "dropped_clip_filters": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

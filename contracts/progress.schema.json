@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://craftcut/schemas/progress.schema.json",
+  "title": "CraftcutProgress",
+  "description": "Atomically-rewritten progress file at <project>/.craftcut/progress.json. Replaced on every tick.",
+  "type": "object",
+  "required": ["schema", "stage", "started_at", "phase", "pct"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "craftcut.progress.v1" },
+    "stage": {
+      "type": "string",
+      "enum": ["trim", "restructure", "render", "derive"]
+    },
+    "started_at": { "type": "string", "format": "date-time" },
+    "phase": {
+      "type": "string",
+      "enum": ["prepare", "decode", "filter", "encode", "mux", "verify", "cleanup"]
+    },
+    "current": { "type": ["number", "null"] },
+    "total": { "type": ["number", "null"] },
+    "pct": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "eta_seconds": { "type": ["number", "null"] },
+    "deterministic": { "type": "boolean" }
+  }
+}

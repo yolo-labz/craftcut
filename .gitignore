@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.pyright/
+dist/
+build/
+.venv/
+uv.lock.bak
+
+# project-local runtime state
+**/.craftcut/
+
+# JS tooling (commitlint) — local only, never committed
+node_modules/
+package-lock.json
