@@ -75,6 +75,7 @@ ignore = [
   "EM101", "EM102",
   "FBT001", "FBT002",  # boolean flags are idiomatic for Typer
   "PLR0913", # Typer CLI callbacks have many args by design
+  "PLR0917", # same shape: Typer adds positional options past the limit
   "DTZ005",  # local-time now() is intentional for age calcs
   "TC001", "TC002", "TC003",  # Pydantic needs runtime imports
   "PLC0415", # lazy imports are intentional in a few places
