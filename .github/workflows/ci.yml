@@ -9,7 +9,7 @@ permissions: {}
 
 jobs:
   test:
-    runs-on: macos-14
+    runs-on: macos-15
     timeout-minutes: 10
     permissions:
       contents: read
@@ -26,6 +26,8 @@ jobs:
         with:
           version: "0.5.x"
           enable-cache: true
+          # Pin the interpreter: macos-15 resolves 3.15, which PyO3 0.27 (rpds-py) can't build.
+          python-version: "3.12"
 
       - name: Sync deps
         run: uv sync --extra dev
