@@ -564,16 +564,16 @@ wheels = [
 
 [[package]]
 name = "pytest-golden"
-version = "1.0.1"
+version = "1.0.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pytest" },
     { name = "ruamel-yaml" },
     { name = "testfixtures" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/44/80/4d405adb81e16c841708652834da6ac6cc7c0a47b21bbc998d896cb9e471/pytest_golden-1.0.1.tar.gz", hash = "sha256:968d01ab05d330fa10b310545fe8fd9aeb75d3a5b9a513fdbe91b89230b68938", size = 12540, upload-time = "2026-01-06T18:10:32.702Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/4a/b6/944d111209fdfa75b705c122847da2915769134276c777afc0357f254c0e/pytest_golden-1.0.2.tar.gz", hash = "sha256:c3ab1c3935e87a35944945c73210a8859dcfb71f9ca5900abca2500f05402b41", size = 12895, upload-time = "2026-10-04T14:11:09.062Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/56/5a/ea5c72803aa580c647298f079edf36fdfa2c154e9ed95c1b2a8ee00c38b8/pytest_golden-1.0.1-py3-none-any.whl", hash = "sha256:189abdbf61bad53423db5a9005390c1f96cc1aa404e39f2cbeea8a229a17b99b", size = 10983, upload-time = "2026-01-06T18:10:31.168Z" },
+    { url = "https://files.pythonhosted.org/packages/66/e1/8d8d673c267d7af4239c110b087fac5e2394a80d73f8de1707d677c38753/pytest_golden-1.0.2-py3-none-any.whl", hash = "sha256:88bb1020852a9c6930f2c43be682ce2667de5f253b96d0a209296870ed47280b", size = 11015, upload-time = "2026-10-04T14:11:07.797Z" },
 ]
 
 [[package]]
