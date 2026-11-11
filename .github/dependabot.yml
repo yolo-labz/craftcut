@@ -14,6 +14,11 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
+    # One PR per ecosystem for minor and patch; majors stay alone for review.
+    groups:
+      minor-and-patch:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -25,3 +30,8 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
+    # One PR per ecosystem for minor and patch; majors stay alone for review.
+    groups:
+      minor-and-patch:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]

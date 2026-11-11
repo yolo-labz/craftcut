@@ -4,11 +4,14 @@ on:
   push:
     tags:
       - "v*.*.*"
+  # release-please.yml dispatches this at the tag it just created.
+  workflow_dispatch:
 
 permissions: {}
 
 jobs:
   build:
+    if: github.ref_type == 'tag'
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     permissions:
@@ -27,7 +30,8 @@ jobs:
       - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
         with:
           version: "0.5.x"
-          enable-cache: true
+          # A release build must not restore a cache that a PR run could have written.
+          enable-cache: false
 
       - name: Reproducible build env
         run: |
