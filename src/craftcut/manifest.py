@@ -6,7 +6,7 @@ import datetime as dt
 import json
 import os
 import tempfile
-from collections.abc import Iterator
+from collections.abc import Generator
 from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
@@ -39,7 +39,7 @@ def _break_stale_lock(lock_file: Path) -> None:
 
 
 @contextmanager
-def manifest_lock(layout: ProjectLayout, timeout: float = 30.0) -> Iterator[None]:
+def manifest_lock(layout: ProjectLayout, timeout: float = 30.0) -> Generator[None]:
     layout.state.mkdir(parents=True, exist_ok=True)
     lock_file = _lock_path(layout)
     _break_stale_lock(lock_file)
