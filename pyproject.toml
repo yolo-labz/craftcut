@@ -50,6 +50,10 @@ Homepage = "https://github.com/yolo-labz/craftcut"
 Issues = "https://github.com/yolo-labz/craftcut/issues"
 Repository = "https://github.com/yolo-labz/craftcut"
 
+[dependency-groups]
+# Fuzzing only (`uv sync --group fuzz`): atheris ships libFuzzer wheels for Linux.
+fuzz = ["atheris==3.1.0; sys_platform == 'linux'"]
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/craftcut"]
 
@@ -89,6 +93,7 @@ ignore = [
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**/*.py" = ["S", "D", "ANN", "PLR", "ARG"]
+"fuzz/**/*.py" = ["INP001"] # scripts, not a package
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
