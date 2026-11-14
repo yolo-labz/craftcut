@@ -98,7 +98,12 @@ jobs:
           name: craftcut-dist
           path: dist/
 
+      # PyPI trusted publisher is not registered yet (needs the PyPI account owner: pypi.org > Publishing >
+      # add a pending publisher for craftcut, repo yolo-labz/craftcut, workflow release.yml, environment pypi).
+      # Until then the first tag would die here and never reach the GitHub Release. Set the repo variable
+      # PYPI_PUBLISH=true after registering it to turn this step on.
       - name: Publish to PyPI (Trusted Publishing + PEP 740)
+        if: vars.PYPI_PUBLISH == 'true'
         uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # release/v1.14.3
         with:
           packages-dir: dist/
