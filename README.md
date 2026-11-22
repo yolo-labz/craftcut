@@ -13,12 +13,12 @@ Requires macOS 14+ on Apple Silicon. External tools: `auto-editor ≥ 26`, `melt
 
 ## Subcommands
 
-- `craftcut doctor` — probe external tool versions
-- `craftcut validate` — source integrity check (ffprobe + SRT + rotation)
-- `craftcut trim` — per-clip silence trim via auto-editor (parallel)
-- `craftcut restructure` — section-map-driven OTIO timeline surgery
-- `craftcut render` — melt headless render to 1080×1920 portrait master
-- `craftcut derive` — landscape pillarbox + shorts cutdowns
+- `craftcut doctor`, probe external tool versions
+- `craftcut validate`, source integrity check (ffprobe + SRT + rotation)
+- `craftcut trim`, per-clip silence trim via auto-editor (parallel)
+- `craftcut restructure`, section-map-driven OTIO timeline surgery
+- `craftcut render`, melt headless render to 1080×1920 portrait master
+- `craftcut derive`, landscape pillarbox + shorts cutdowns
 
 See `specs/010-craftcut/quickstart.md` for the end-to-end walkthrough.
 
